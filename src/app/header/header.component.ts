@@ -8,6 +8,7 @@ import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 export class HeaderComponent implements OnInit {
   @Output() featureSelected = new EventEmitter<string>();
   showMenu = false;
+  showManageMenu = false;
 
   constructor() { }
 
@@ -20,5 +21,9 @@ export class HeaderComponent implements OnInit {
 
   onMenuClicked() {
     this.showMenu = !this.showMenu;
+  }
+
+  onManageMenuClicked() {
+    this.showManageMenu = !this.showManageMenu;
   }
 }

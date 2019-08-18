@@ -8,10 +8,14 @@ import { Recipe } from '../recipe.model';
 })
 export class RecipeDetailComponent implements OnInit {
   @Input() recipe: Recipe;
+  showMenu = false;
 
   constructor() { }
 
   ngOnInit() {
   }
 
+  onMenuClick(): void {
+    this.showMenu = !this.showMenu;
+  }
 }

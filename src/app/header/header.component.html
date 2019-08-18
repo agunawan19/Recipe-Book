@@ -24,8 +24,9 @@
       </ul>
       <ul class="navbar-nav ml-auto">
         <li class="nav-item dropdown">
-          <a href="#" class="nav-link dropdown-toggle" role="button" data-toggle="dropdown">Manage <span class="caret"></span></a>
-          <ul class="dropdown-menu">
+          <a href="#" class="nav-link dropdown-toggle" role="button" data-toggle="dropdown"
+            (click)="onManageMenuClicked()">Manage <span class="caret"></span></a>
+          <ul class="dropdown-menu" [class.show]="showManageMenu">
             <li class="nav-item"><a href="#" class="nav-link">Save Data</a></li>
             <li class="nav-item"><a href="#" class="nav-link">Fetch Data</a></li>
           </ul>

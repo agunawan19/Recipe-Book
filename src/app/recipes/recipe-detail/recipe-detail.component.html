@@ -17,11 +17,12 @@
     <div class="btn-group">
       <button
         type="button"
-        class="btn btn-primary dropdown-toggle">Manage Recipe <span class="caret"></span></button>
-      <ul class="dropdown-menu">
-        <li><a href="#"></a>To Shopping List</li>
-        <li><a href="#"></a>Edit Recipe</li>
-        <li><a href="#"></a>Delete Recipe</li>
+        class="btn btn-primary dropdown-toggle"
+        (click)="onMenuClick()">Manage Recipe <span class="caret"></span></button>
+      <ul class="dropdown-menu" [class.show]="showMenu">
+        <li class="nav-item"<a href="#" class="nav-link"></a>To Shopping List</li>
+        <li class="nav-item"><a href="#" class="nav-link"></a>Edit Recipe</li>
+        <li class="nav-item"><a href="#" class="nav-link"></a>Delete Recipe</li>
       </ul>
     </div>
   </div>
