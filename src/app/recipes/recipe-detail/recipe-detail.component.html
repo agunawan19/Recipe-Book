@@ -19,10 +19,18 @@
         type="button"
         class="btn btn-primary dropdown-toggle"
         (click)="onMenuClick()">Manage Recipe <span class="caret"></span></button>
-      <ul class="dropdown-menu" [class.show]="showMenu">
-        <li class="dropdown-item"><a href="#" class="dropdown-item-text"></a>To Shopping List</li>
-        <li class="dropdown-item"><a href="#" class="dropdown-item-text"></a>Edit Recipe</li>
-        <li class="dropdown-item"><a href="#" class="dropdown-item-text"></a>Delete Recipe</li>
+      <ul class="dropdown-menu cursor-pointer" [class.show]="showMenu">
+        <li
+          class="dropdown-item"
+          (click)="onAddToShoppingList()">
+          <a href="#" class="dropdown-item-text"></a>To Shopping List
+        </li>
+        <li class="dropdown-item">
+          <a href="#" class="dropdown-item-text"></a>Edit Recipe
+        </li>
+        <li class="dropdown-item">
+          <a href="#" class="dropdown-item-text"></a>Delete Recipe
+        </li>
       </ul>
     </div>
   </div>
