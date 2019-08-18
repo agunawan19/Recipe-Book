@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Ingredient } from '../shared/ingredient.model';
+import { StringUtility } from '../shared/string-utility';
 
 @Component({
   selector: 'app-shopping-list',
@@ -18,6 +19,9 @@ export class ShoppingListComponent implements OnInit {
   }
 
   onIngredientAdded(ingredient: Ingredient) {
-    this.ingredients.push(ingredient);
+    if (!StringUtility.isNullOrWhitespace(ingredient.name)
+      && ingredient.amount > 0) {
+      this.ingredients.push(ingredient);
+    }
   }
 }
