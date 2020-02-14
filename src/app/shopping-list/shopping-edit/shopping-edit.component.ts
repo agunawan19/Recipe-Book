@@ -9,7 +9,7 @@ import { ShoppingListService } from '../shopping-list.service';
 })
 export class ShoppingEditComponent implements OnInit {
   @ViewChild('nameInput', { static: true }) nameInputRef: ElementRef;
-  @ViewChild('amountInput', { static: true }) amountInputRef: ElementRef;
+  @ViewChild('amountInput', { static: false }) amountInputRef: ElementRef;
 
   constructor(private shoppingListService: ShoppingListService) { }
 

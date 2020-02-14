@@ -12,6 +12,7 @@ import { RecipeItemComponent } from './recipes/recipe-list/recipe-item/recipe-it
 import { ShoppingListComponent } from './shopping-list/shopping-list.component';
 import { ShoppingEditComponent } from './shopping-list/shopping-edit/shopping-edit.component';
 import { DropDownDirective } from './shared/drop-down.directive';
+import { DigitOnlyDirective } from './shared/digit-only.directive';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { DropDownDirective } from './shared/drop-down.directive';
     RecipeItemComponent,
     ShoppingListComponent,
     ShoppingEditComponent,
-    DropDownDirective
+    DropDownDirective,
+    DigitOnlyDirective
   ],
   imports: [
     BrowserModule,
