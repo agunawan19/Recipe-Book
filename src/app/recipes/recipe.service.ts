@@ -11,8 +11,8 @@ export class RecipeService {
 
   private recipes: Recipe[] = [
     new Recipe(
-      'Tasty Schitzel',
-      'A super-tasty Schitzel - just awesome!',
+      'Tasty Schnitzel',
+      'A super-tasty Schnitzel - just awesome!',
       'https://upload.wikimedia.org/wikipedia/commons/7/72/Schnitzel.JPG',
       [
         new Ingredient('Meat', 1),
