@@ -1,5 +1,4 @@
 import { Directive, Input, ElementRef, HostListener, HostBinding } from '@angular/core';
-import { ShoppingEditComponent } from '../shopping-list/shopping-edit/shopping-edit.component';
 
 @Directive({
   selector: '[appDigitOnly]'
@@ -22,7 +21,7 @@ export class DigitOnlyDirective {
   ];
 
   @Input() decimal ? = 'false';
-  @Input() decimalSeparator ?  = '.';
+  @Input() decimalSeparator ? = '.';
   inputElement: HTMLInputElement;
 
   constructor(public el: ElementRef) {
