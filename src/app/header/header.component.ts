@@ -19,7 +19,7 @@ export class HeaderComponent implements OnInit {
     this.featureSelected.emit(feature);
   }
 
-  onMenuClicked() {
+  onMenuButtonClicked() {
     this.showMenu = !this.showMenu;
   }
 
