@@ -31,6 +31,7 @@ import { DigitOnlyDirective } from './shared/digit-only.directive';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
