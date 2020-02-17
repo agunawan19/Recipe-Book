@@ -1,6 +1,6 @@
 import { Injectable, EventEmitter } from '@angular/core';
 import { Ingredient } from '../shared/ingredient.model';
-import { StringService } from '../shared/string-service';
+import { StringService } from '../shared/string.service';
 import { ArrayService } from '../shared/array.service';
 
 @Injectable({

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Ingredient } from '../shared/ingredient.model';
-import { StringService } from '../shared/string-service';
+import { StringService } from '../shared/string.service';
 import { ShoppingListService } from './shopping-list.service';
 
 @Component({
