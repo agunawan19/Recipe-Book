@@ -95,7 +95,6 @@ export class DigitOnlyDirective {
     return result;
   }
 
-  private isValidDecimal(input: string): boolean {
-    return input.split(this.decimalSeparator).length <= 2;
-  }
+  private isValidDecimal = (input: string): boolean => input.split(this.decimalSeparator).length <= 2;
+
 }

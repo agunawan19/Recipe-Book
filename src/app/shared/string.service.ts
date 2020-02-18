@@ -6,6 +6,5 @@ import { Injectable } from '@angular/core';
 export class StringService {
   constructor() { }
 
-  isNullOrWhitespace = (input: string): boolean =>
-    !input || !input.trim();
+  isNullOrWhitespace = (input: string): boolean => !input || !input.trim();
 }
