@@ -13,6 +13,7 @@ import { ShoppingListComponent } from './shopping-list/shopping-list.component';
 import { ShoppingEditComponent } from './shopping-list/shopping-edit/shopping-edit.component';
 import { DropDownDirective } from './shared/drop-down.directive';
 import { DigitOnlyDirective } from './shared/digit-only.directive';
+import { RecipeStartComponent } from './recipes/recipe-start/recipe-start.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { DigitOnlyDirective } from './shared/digit-only.directive';
     ShoppingListComponent,
     ShoppingEditComponent,
     DropDownDirective,
-    DigitOnlyDirective
+    DigitOnlyDirective,
+    RecipeStartComponent
   ],
   imports: [
     BrowserModule,

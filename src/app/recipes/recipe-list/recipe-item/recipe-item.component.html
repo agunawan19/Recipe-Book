@@ -1,6 +1,7 @@
 <a
-  class="list-group-item list-group-item-action clearfix cursor-pointer"
-  (click)="onSelected()">
+  [routerLink]="[index]"
+  routerLinkActive="active"
+  class="list-group-item list-group-item-action clearfix cursor-pointer">
   <div class="float-left">
     <h4 class="list-group-item-horizontal">{{ recipe.name }}</h4>
     <p class="list-group-item-horizontal">{{ recipe.description }}</p>
