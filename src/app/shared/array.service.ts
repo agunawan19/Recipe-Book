@@ -10,10 +10,12 @@ export class ArrayService {
   sumByKey = (items: any, keyName: string, valueName: string) => items.reduce(
     (result: any[], item: any) => {
 
-      if (!result.some(e => e[keyName].toLowerCase() === item[keyName].toLowerCase())) {
+      const lowerCasedItemKeyName = item[keyName].toLowerCase();
+
+      if (!result.some(e => e[keyName].toLowerCase() === lowerCasedItemKeyName)) {
         result.push(item);
       } else {
-        result.find(e => e[keyName].toLowerCase() === item[keyName].toLowerCase())[valueName] += item[valueName];
+        result.find(e => e[keyName].toLowerCase() === lowerCasedItemKeyName)[valueName] += item[valueName];
       }
 
       return result;
