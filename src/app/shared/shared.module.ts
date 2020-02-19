@@ -5,8 +5,8 @@ import { DropDownDirective } from './drop-down.directive';
 
 @NgModule({
   declarations: [
-     DigitOnlyDirective,
-     DropDownDirective
+    DigitOnlyDirective,
+    DropDownDirective
   ],
   exports: [
     DigitOnlyDirective,
