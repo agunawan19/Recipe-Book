@@ -9,7 +9,8 @@
             id="name"
             class="form-control"
             #nameInput
-            [(ngModel)]="ingredient.name"
+            [value]="ingredient ? ingredient.name : ''"
+            (change)=onIngredientNameChange($event.target.value)
             name="name">
         </div>
         <div class="col-sm-2 form-group">
@@ -20,7 +21,7 @@
             class="form-control"
             #amountInput
             appDigitOnly
-            [(ngModel)]="ingredient.amount"
+            [value]="ingredient ? ingredient.amount : ''"
             name="amount">
         </div>
       </div>
@@ -32,7 +33,8 @@
             (click)="onAddItem(clearItemAfterAdd)">Add</button>
           <button
             class="btn btn-danger"
-            type="button">Delete</button>
+            type="button"
+            (click)="onDeleteItem()">Delete</button>
           <button
             class="btn btn-primary"
             type="button"
