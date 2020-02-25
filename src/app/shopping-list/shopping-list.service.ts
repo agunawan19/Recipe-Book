@@ -31,12 +31,14 @@ export class ShoppingListService {
   }
 
   addIngredient(ingredient: Ingredient): void {
-    if (!this.stringService.isNullOrWhitespace(ingredient.name)
-      && ingredient.amount > 0) {
-      this.ingredients.push(ingredient);
-      this.ingredients = this.arrayService.sumByKey(this.ingredients, 'name', 'amount');
-      this.ingredientIndexSource.next(this.ingredients.length - 1);
+    if (this.stringService.isNullOrWhitespace(ingredient.name)
+      || ingredient.amount === 0) {
+      return;
     }
+
+    this.ingredients.push(ingredient);
+    this.ingredients = this.arrayService.sumByKey(this.ingredients, 'name', 'amount');
+    this.ingredientIndexSource.next(this.ingredients.length - 1);
     this.ingredientsSource.next([...this.ingredients]);
   }
 
