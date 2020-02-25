@@ -13,24 +13,24 @@ export class ShoppingEditComponent implements OnInit, OnDestroy {
   @ViewChild('nameInput', { static: true }) private nameInputRef: ElementRef;
   @ViewChild('amountInput', { static: false }) private amountInputRef: ElementRef;
   private ingredientIndexSubscription: Subscription;
-  private ingredientIndex: number;
   private ingredients: Ingredient[];
 
-  public clearItemAfterAdd = false;
-  public ingredient: Ingredient;
+  ingredientIndex = -1;
+  clearItemAfterAdd = false;
+  ingredient: Ingredient;
 
   constructor(private shoppingListService: ShoppingListService,
               private stringService: StringService) {
-    this.ingredientIndexSubscription = shoppingListService.ingredientIndex$
-      .subscribe(
-        ingredient => {
-          this.ingredientIndex = ingredient;
-          this.ingredients = shoppingListService.getIngredients();
-          this.ingredient = this.ingredients[this.ingredientIndex];
-        });
   }
 
   ngOnInit() {
+    this.ingredientIndexSubscription = this.shoppingListService.ingredientIndex$
+    .subscribe(
+      ingredient => {
+        this.ingredientIndex = ingredient;
+        this.ingredients = this.shoppingListService.getIngredients();
+        this.ingredient = this.ingredients[this.ingredientIndex];
+      });
   }
 
   ngOnDestroy(): void {

@@ -35,6 +35,7 @@ export class ShoppingListService {
       && ingredient.amount > 0) {
       this.ingredients.push(ingredient);
       this.ingredients = this.arrayService.sumByKey(this.ingredients, 'name', 'amount');
+      this.ingredientIndexSource.next(this.ingredients.length - 1);
     }
     this.ingredientsSource.next([...this.ingredients]);
   }
