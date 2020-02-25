@@ -16,7 +16,7 @@ export class ShoppingListComponent implements OnInit, OnDestroy {
   private ingredientNameSubscription: Subscription;
   private ingredientIndexSubscription: Subscription;
   private ingredientName = '';
-  private ingredientIndex = -1;
+  ingredientIndex = -1;
 
   constructor(
     private shoppingListService: ShoppingListService) { }

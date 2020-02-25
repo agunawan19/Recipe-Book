@@ -10,13 +10,14 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./shopping-edit.component.scss']
 })
 export class ShoppingEditComponent implements OnInit, OnDestroy {
-  @ViewChild('nameInput', { static: true }) nameInputRef: ElementRef;
-  @ViewChild('amountInput', { static: false }) amountInputRef: ElementRef;
-  clearItemAfterAdd = false;
+  @ViewChild('nameInput', { static: true }) private nameInputRef: ElementRef;
+  @ViewChild('amountInput', { static: false }) private amountInputRef: ElementRef;
   private ingredientIndexSubscription: Subscription;
   private ingredientIndex: number;
   private ingredients: Ingredient[];
-  ingredient: Ingredient;
+
+  public clearItemAfterAdd = false;
+  public ingredient: Ingredient;
 
   constructor(private shoppingListService: ShoppingListService,
               private stringService: StringService) {
@@ -51,15 +52,14 @@ export class ShoppingEditComponent implements OnInit, OnDestroy {
     this.shoppingListService.deleteIngredient(this.ingredientIndex);
   }
 
+  onClearItem(): void {
+    this.clearItem();
+  }
+
   private clearItem() {
     this.ingredient = null;
     this.ingredientIndex = -1;
-    this.nameInputRef.nativeElement.value = '';
-    this.amountInputRef.nativeElement.value = '';
-  }
-
-  onClearItem(): void {
-    this.clearItem();
+    this.shoppingListService.selectedIngredientChange(this.ingredientIndex);
   }
 
   onIngredientNameChange(name: string): void {

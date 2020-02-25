@@ -3,7 +3,7 @@
     <app-shopping-edit></app-shopping-edit>
     <hr>
     <ul class="list-group">
-      <li class="list-group-item cursor-pointer"
+      <li class="list-group-item cursor-pointer" [class.active]="ingredientIndex === i"
         *ngFor="let ingredient of ingredients; let i = index; trackBy: trackByIndex;"
         (click)="onIngredientClick(ingredient)">
         <a>

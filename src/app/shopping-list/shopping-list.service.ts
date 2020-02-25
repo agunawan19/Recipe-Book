@@ -16,6 +16,7 @@ export class ShoppingListService {
   private ingredientIndexSource = new Subject<number>();
   private ingredientNameSource = new BehaviorSubject<string>('');
   private ingredientAmountSource = new BehaviorSubject<number>(0);
+  private unselectedIngredientIndex = -1;
 
   ingredientIndex$ = this.ingredientIndexSource.asObservable();
   ingredients$ = this.ingredientsSource.asObservable();
@@ -45,11 +46,12 @@ export class ShoppingListService {
   }
 
   deleteIngredient(ingredientIndex: number): void {
-    if (ingredientIndex === -1) {
+    if (ingredientIndex === this.unselectedIngredientIndex) {
       return;
     }
 
     this.ingredients.splice(ingredientIndex, 1);
+    this.ingredientIndexSource.next(this.unselectedIngredientIndex);
     this.ingredientsSource.next([...this.ingredients]);
   }
 
@@ -63,5 +65,9 @@ export class ShoppingListService {
 
   ingredientAmountChange(amount: number) {
     this.ingredientAmountSource.next(amount);
+  }
+
+  selectedIngredientChange(ingredientIndex: number) {
+    this.ingredientIndexSource.next(ingredientIndex);
   }
 }
