@@ -2,12 +2,16 @@ import { Injectable, EventEmitter } from '@angular/core';
 import { Ingredient } from '../shared/ingredient.model';
 import { StringService } from '../shared/string.service';
 import { ArrayService } from '../shared/array.service';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ShoppingListService {
   ingredientChanged = new EventEmitter<Ingredient[]>();
+  private ingredientSource = new Subject<number>();
+
+  ingredient$ = this.ingredientSource.asObservable();
 
   private ingredients: Ingredient[] = [
     new Ingredient('Apples', 5),
@@ -34,5 +38,9 @@ export class ShoppingListService {
     this.ingredients.push(...ingredients);
     this.ingredients = this.arrayService.sumByKey(this.ingredients, 'name', 'amount');
     this.ingredientChanged.emit([...ingredients]);
+  }
+
+  editIngredient(ingredientIndex: number): void {
+    this.ingredientSource.next(ingredientIndex);
   }
 }

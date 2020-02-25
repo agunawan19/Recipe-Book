@@ -21,4 +21,13 @@ export class ShoppingListComponent implements OnInit {
         (ingredients: Ingredient[]) => this.ingredients = ingredients
       );
   }
+
+  onIngredientClick(ingredient: Ingredient) {
+    const ingredientIndex = this.ingredients.findIndex(i => i.name === ingredient.name);
+    this.shoppingListService.editIngredient(ingredientIndex);
+  }
+
+  trackByIndex(index: number, ingredient: Ingredient): number {
+    return index;
+  }
 }

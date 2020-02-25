@@ -8,7 +8,9 @@
             type="text"
             id="name"
             class="form-control"
-            #nameInput>
+            #nameInput
+            [(ngModel)]="ingredient.name"
+            name="name">
         </div>
         <div class="col-sm-2 form-group">
           <label for="amount">Amount</label>
@@ -17,7 +19,9 @@
             id="amount"
             class="form-control"
             #amountInput
-            appDigitOnly>
+            appDigitOnly
+            [(ngModel)]="ingredient.amount"
+            name="amount">
         </div>
       </div>
       <div class="row">
