@@ -70,4 +70,12 @@ export class ShoppingEditComponent implements OnInit, OnDestroy {
 
     this.shoppingListService.ingredientNameChange(name);
   }
+
+  onIngredientAmountChange(amount: number): void {
+    if (this.ingredientIndex === this.unselectedIngredientIndex) {
+      return;
+    }
+
+    this.shoppingListService.ingredientAmountChange(amount);
+  }
 }

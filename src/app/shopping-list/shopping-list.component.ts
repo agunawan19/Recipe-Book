@@ -11,15 +11,16 @@ import { Subscription } from 'rxjs';
 })
 export class ShoppingListComponent implements OnInit, OnDestroy {
   ingredients: Ingredient[];
-
-  private ingredientsSubscription: Subscription;
-  private ingredientNameSubscription: Subscription;
-  private ingredientIndexSubscription: Subscription;
-  private ingredientName = '';
   ingredientIndex = -1;
 
-  constructor(
-    private shoppingListService: ShoppingListService) { }
+  private unselectedIngredientIndex = -1;
+  private ingredientsSubscription: Subscription;
+  private ingredientNameSubscription: Subscription;
+  private ingredientAmountSubscription: Subscription;
+  private ingredientIndexSubscription: Subscription;
+
+  constructor(private shoppingListService: ShoppingListService) {
+  }
 
   ngOnInit() {
     this.ingredients = this.shoppingListService.getIngredients();
@@ -31,13 +32,25 @@ export class ShoppingListComponent implements OnInit, OnDestroy {
     this.ingredientNameSubscription = this.shoppingListService.ingredientName$
       .subscribe(
         (name: string) => {
-          if (this.ingredientIndex === -1) {
+          if (this.ingredientIndex === this.unselectedIngredientIndex) {
             return;
           }
 
           console.log(name);
-          this.ingredientName = name;
-          this.ingredients[this.ingredientIndex].name = this.ingredientName;
+          this.ingredients[this.ingredientIndex].name = name;
+        }
+      );
+
+
+    this.ingredientAmountSubscription = this.shoppingListService.ingredientAmount$
+      .subscribe(
+        (amount: number) => {
+          if (this.ingredientIndex === this.unselectedIngredientIndex) {
+            return;
+          }
+
+          console.log(name);
+          this.ingredients[this.ingredientIndex].amount = amount;
         }
       );
 
@@ -53,6 +66,7 @@ export class ShoppingListComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.ingredientsSubscription.unsubscribe();
     this.ingredientNameSubscription.unsubscribe();
+    this.ingredientAmountSubscription.unsubscribe();
     this.ingredientIndexSubscription.unsubscribe();
   }
 
@@ -62,6 +76,7 @@ export class ShoppingListComponent implements OnInit, OnDestroy {
   }
 
   trackByIndex(index: number, ingredient: Ingredient): number {
+    console.log('trackByIndex', index, ingredient);
     return index;
   }
 }
