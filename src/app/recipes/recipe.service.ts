@@ -2,16 +2,16 @@ import { Injectable, EventEmitter } from '@angular/core';
 import { Recipe } from './recipe.model';
 import { Ingredient } from '../shared/ingredient.model';
 import { ShoppingListService } from '../shopping-list/shopping-list.service';
-import { Subject } from 'rxjs';
+import { Subject, Observable, of } from 'rxjs';
+import { delay } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RecipeService {
   private selectedRecipeSource = new Subject<Recipe>();
-  selectedRecipe$ = this.selectedRecipeSource.asObservable();
 
-  private recipes: Recipe[] = [
+  private recipesMock = [
     new Recipe(
       'Tasty Schnitzel',
       'A super-tasty Schnitzel - just awesome!',
@@ -42,14 +42,23 @@ export class RecipeService {
     )
   ];
 
+  private recipes: Recipe[];
+
+  selectedRecipe$ = this.selectedRecipeSource.asObservable();
+
   constructor(private shoppingListService: ShoppingListService) { }
 
-  getRecipes(): Recipe[] {
-    return [...this.recipes];
+  getRecipes(): Observable<Recipe[]> {
+    if (!this.recipes) {
+      this.recipes = [...this.recipesMock];
+      return of([...this.recipes]).pipe(delay(2000));
+    } else {
+      return of([...this.recipes]);
+    }
   }
 
-  getRecipe(index: number): Recipe {
-    return this.recipes[index];
+  getRecipe(index: number): Observable<Recipe> {
+    return of(this.recipes[index]);
   }
 
   addIngredientsToShoppingList(ingredients: Ingredient[]): void {

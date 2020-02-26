@@ -2,16 +2,18 @@ import { Injectable, EventEmitter } from '@angular/core';
 import { Ingredient } from '../shared/ingredient.model';
 import { StringService } from '../shared/string.service';
 import { ArrayService } from '../shared/array.service';
-import { Subject, BehaviorSubject } from 'rxjs';
+import { Observable, Subject, BehaviorSubject, of } from 'rxjs';
+import { delay } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ShoppingListService {
-  private ingredients: Ingredient[] = [
+  private ingredientsMock = [
     new Ingredient('Apples', 5),
     new Ingredient('Tomatoes', 10),
   ];
+  private ingredients: Ingredient[];
   private ingredientsSource = new Subject<Ingredient[]>();
   private ingredientIndexSource = new Subject<number>();
   private ingredientNameSource = new BehaviorSubject<string>('');
@@ -24,10 +26,17 @@ export class ShoppingListService {
   ingredientAmount$ = this.ingredientAmountSource.asObservable();
 
   constructor(private stringService: StringService,
-              private arrayService: ArrayService) { }
+              private arrayService: ArrayService) {
+    this.getIngredients();
+  }
 
-  getIngredients(): Ingredient[] {
-    return [...this.ingredients];
+  getIngredients(): Observable<Ingredient[]> {
+    if (!this.ingredients) {
+      this.ingredients = [...this.ingredientsMock];
+      return of([...this.ingredients]).pipe(delay(2000));
+    } else {
+      return of([...this.ingredients]);
+    }
   }
 
   addIngredient(ingredient: Ingredient): void {

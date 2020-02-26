@@ -2,7 +2,8 @@ import { Component, OnInit, ElementRef, ViewChild, OnDestroy } from '@angular/co
 import { Ingredient } from 'src/app/shared/ingredient.model';
 import { ShoppingListService } from '../shopping-list.service';
 import { StringService } from 'src/app/shared/string.service';
-import { Subscription } from 'rxjs';
+import { Subscription, Observable } from 'rxjs';
+import { promise } from 'protractor';
 
 @Component({
   selector: 'app-shopping-edit',
@@ -26,12 +27,26 @@ export class ShoppingEditComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.ingredientIndexSubscription = this.shoppingListService.ingredientIndex$
-    .subscribe(
-      ingredient => {
-        this.ingredientIndex = ingredient;
-        this.ingredients = this.shoppingListService.getIngredients();
-        this.ingredient = this.ingredients[this.ingredientIndex];
-      });
+      .subscribe(
+        ingredient => {
+          this.ingredientIndex = ingredient;
+
+          // this.ingredients = this.shoppingListService.getIngredients();
+          this.shoppingListService.getIngredients()
+            .subscribe(
+              (ingredients: Ingredient[]) => this.ingredients = ingredients
+            );
+
+          const promises: Promise<any>[] = [];
+          promises.push(this.shoppingListService.getIngredients().toPromise());
+
+          // this.ingredient = this.ingredients[this.ingredientIndex];
+          Promise.all(promises).then(
+            responses => {
+              console.log('Promise: ', responses);
+              this.ingredient = responses[0][this.ingredientIndex];
+            });
+        });
   }
 
   ngOnDestroy(): void {
