@@ -47,7 +47,10 @@ export class ShoppingListService {
 
     this.ingredients.push(ingredient);
     this.ingredients = this.arrayService.sumByKey(this.ingredients, 'name', 'amount');
-    this.ingredientIndexSource.next(this.ingredients.length - 1);
+    const ingredientIndex = this.ingredients.findIndex(
+      (i: Ingredient) => i.name === ingredient.name
+    );
+    this.ingredientIndexSource.next(ingredientIndex);
     this.ingredientsSource.next([...this.ingredients]);
   }
 
