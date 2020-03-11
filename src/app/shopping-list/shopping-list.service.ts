@@ -33,7 +33,7 @@ export class ShoppingListService {
   getIngredients(): Observable<Ingredient[]> {
     if (!this.ingredients) {
       this.ingredients = [...this.ingredientsMock];
-      return of([...this.ingredients]).pipe(delay(2000));
+      return of([...this.ingredients]).pipe(delay(1000));
     } else {
       return of([...this.ingredients]);
     }

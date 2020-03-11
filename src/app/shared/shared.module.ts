@@ -4,11 +4,12 @@ import { DigitOnlyDirective } from './digit-only.directive';
 import { DropDownDirective } from './drop-down.directive';
 import { ArrayService } from './array.service';
 import { StringService } from './string.service';
+import { LoaderService } from './loader.service';
 
 @NgModule({
   declarations: [
     DigitOnlyDirective,
-    DropDownDirective
+    DropDownDirective,
   ],
   exports: [
     DigitOnlyDirective,
@@ -24,7 +25,8 @@ export class SharedModule {
       ngModule: SharedModule,
       providers: [
         ArrayService,
-        StringService
+        StringService,
+        LoaderService
       ]
     };
   }
