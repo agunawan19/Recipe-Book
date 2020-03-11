@@ -11,7 +11,7 @@ import { RecipeService } from '../recipe.service';
 import { Recipe } from '../recipe.model';
 
 @Injectable()
-export class RecipeDetailResolver implements Resolve<Observable<Recipe>> {
+export class RecipeDetailResolverService implements Resolve<Observable<Recipe>> {
   constructor(private recipeService: RecipeService, private router: Router) { }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot):
